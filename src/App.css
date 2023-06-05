@@ -24,15 +24,21 @@
   color: white;
 }
 
-.App-link {
+.link {
   color: #61dafb;
+  margin: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.link-box {
+  margin: 20px;
+}
+
+.search-bar {
+  margin: 10px;
+}
+
+.upload-content {
+  display: grid;
+  grid-template-columns: repeat(4,  1fr);
+  gap: 10px;
 }
