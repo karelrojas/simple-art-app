@@ -2,6 +2,7 @@ import './App.css';
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Overhead from "./pages/Overhead";
+import Profile from "./pages/Profile";
 import Create from "./pages/Create";
 import Uploads from "./pages/Uploads";
 import Home from "./pages/Home";
@@ -29,11 +30,12 @@ export default function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<Login setToken={setToken}/>}/>
-          <Route path ="/" element={token ? <Overhead /> : <Navigate to="/login" />}>
+          <Route path="/login" element={!token ? <Login setToken={setToken}/> : <Navigate to="/home" />}/>
+          <Route path ="/" element={token ? <Overhead /> : <Navigate to="/login"/>}>
             <Route path="home" element={<Home setToken={setToken}/>}/>
             <Route path="uploads" element={<Uploads />}/>
             <Route path="create" element={<Create />}/>
+            <Route path="profile" element={<Profile />}/>
           </Route>
         </Routes>
       </BrowserRouter>
