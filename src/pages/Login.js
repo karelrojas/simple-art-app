@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './sty/Login.css';
+import temp_logo from '../images/art-icon.png';
 
 async function loginUser(credentials){
     console.log(JSON.stringify(credentials));
@@ -28,7 +29,7 @@ function Loginform({setToken}) {
     }
 
 
-    return (    
+    return (
         <form className="Login" onSubmit={handleSubmit}>
             <div className="message">{message}</div>
             <label>
@@ -50,10 +51,18 @@ function Loginform({setToken}) {
 export default function Login({setToken}) {
 
     return (
-        <div className="Login-box">
-            <h1>Login to Art App</h1>
-            <Loginform setToken={setToken}/>
-            <button type="signup" to="/signup">Signup</button>
+        <div>
+            <div className="main-body">
+                    <div className="link-box">
+                        <img className="temp-logo" src={temp_logo}></img>
+                        <h1 className="main-title">Art Application</h1>
+                    </div>
+                </div>
+            <div className="Login-box">
+                <h1>Login to Art App</h1>
+                <Loginform setToken={setToken}/>
+                <button type="signup" to="/signup">Signup</button>
+            </div>
         </div>
     );
 }

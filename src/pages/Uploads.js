@@ -8,7 +8,7 @@ function Content({user, desc, date}) {
     return (
         <div className="content">
             <img src="https://placehold.co/200?text=Placeholder+Image" alt="Placeholder"/>
-            <div className="author">Author: {user}</div>
+            <div className="author">{user}</div>
             <div className="content-desc">{desc}</div>
             <div className="upload-date">{newdate}</div>
         </div>
@@ -35,6 +35,13 @@ export default function Uploads() {
                 <h3>This is the page where users can view user uploaded content.</h3>
             </div>
             <div className="upload-body">
+                <label for="sort">Sort by: </label>
+                <select name="sort">
+                    <option value="date-new">Date (newest)</option>
+                    <option value="date-old">Date (oldest)</option>
+                    <option value="author">Author</option>
+                    <option value="rating">Rating</option>
+                </select>
                 <input className="search-bar" type="text" placeholder="Search...">
 
                 </input>
