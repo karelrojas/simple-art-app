@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import './sty/Uploads.css'
 
 // Will update to take in props for img, author, and desc
 function Content({user, desc, date}) {

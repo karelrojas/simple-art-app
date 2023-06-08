@@ -24,13 +24,20 @@
   color: white;
 }
 
+.main-title {
+  padding: 10px;
+}
+
 .link {
   color: #61dafb;
   margin: 5px;
+  padding: 5px;
 }
 
 .link-box {
-  margin: 20px;
+  display: flex;
+  align-items: center;
+  background-color: rgb(246, 252, 138);
 }
 
 .search-bar {
@@ -41,4 +48,9 @@
   display: grid;
   grid-template-columns: repeat(4,  1fr);
   gap: 10px;
+}
+
+.temp-logo {
+  max-width: 4%;
+  padding: 20px;
 }
