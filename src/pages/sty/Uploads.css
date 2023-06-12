@@ -1,3 +1,8 @@
+.upload-content {
+    display: grid;
+    grid-template-columns: auto minmax(1, 1fr);
+}
+
 .content {
     padding: 10px;
     margin: 5px;
@@ -5,4 +10,11 @@
 
 .author {
     font-weight: bold;
+}
+
+/* Testing out changing the column size with respec to window size */
+@media (max-width: 960px) {
+    .upload-content {
+        grid-template-columns: auto minmax(0, 1fr);
+    }
 }

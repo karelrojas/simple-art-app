@@ -27,6 +27,22 @@ export default function Uploads() {
         });
     }, []);
     
+    function handleChange(value) {
+        console.log(JSON.stringify({value}))
+        fetch('http://localhost:8080/uploads', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({value})
+        })
+        .then(res => res.json())
+        .then((data => {
+            console.log(data);
+            setUsers(data);
+        }));
+
+    }
 
     return (
         <div>
@@ -36,7 +52,7 @@ export default function Uploads() {
             </div>
             <div className="upload-body">
                 <label for="sort">Sort by: </label>
-                <select name="sort">
+                <select name="sort" onChange={e => handleChange(e.target.value)}>
                     <option value="date-new">Date (newest)</option>
                     <option value="date-old">Date (oldest)</option>
                     <option value="author">Author</option>

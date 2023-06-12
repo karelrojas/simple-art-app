@@ -32,6 +32,7 @@ export default function App() {
         <Routes>
           <Route path="/login" element={!token ? <Login setToken={setToken}/> : <Navigate to="/home" />}/>
           <Route path ="/" element={token ? <Overhead /> : <Navigate to="/login"/>}>
+            <Route path="" element={<Navigate to="/home"/>} />
             <Route path="home" element={<Home setToken={setToken}/>}/>
             <Route path="uploads" element={<Uploads />}/>
             <Route path="create" element={<Create />}/>

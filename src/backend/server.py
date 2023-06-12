@@ -37,10 +37,30 @@ class Content(db.Model):
     def __repr__(self):
         return '<Content %r>' % self.author
 
-@app.route('/uploads')
+@app.route('/uploads', methods=['GET','POST'])
 def uploads():
 
-    db_datalist = Content.query.all()
+    db_datalist = []
+    if request.method == 'POST':
+        sort_data = request.get_json()
+        sort_option = sort_data["value"]
+
+        match sort_option:
+            case "date-new":
+                db_datalist = Content.query.order_by(Content.date.desc())
+
+            case "date-old":
+                db_datalist = Content.query.order_by(Content.date)
+
+            case "author":
+                print("placeholder")
+
+            case "rating":
+                print("placeholder")
+
+            case _:
+                db_datalist = Content.query.order_by(Content.date.desc())
+
     user_list = []
     for user in db_datalist:
         user_list.append([user.author, user.description, user.date, user.cid])
