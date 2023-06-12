@@ -33,14 +33,16 @@ class Content(db.Model):
     description = db.Column(db.String(200))
     image = db.Column(db.String(500))
     date = db.Column(db.DateTime)
+    rating = db.Column(db.Integer)
 
     def __repr__(self):
         return '<Content %r>' % self.author
 
 @app.route('/uploads', methods=['GET','POST'])
 def uploads():
+    # This will be the default for now
+    db_datalist = Content.query.order_by(Content.date.desc())
 
-    db_datalist = []
     if request.method == 'POST':
         sort_data = request.get_json()
         sort_option = sort_data["value"]
@@ -53,10 +55,10 @@ def uploads():
                 db_datalist = Content.query.order_by(Content.date)
 
             case "author":
-                print("placeholder")
+                db_datalist = Content.query.order_by(Content.author)
 
             case "rating":
-                print("placeholder")
+                db_datalist = Content.query.order_by(Content.rating.desc())
 
             case _:
                 db_datalist = Content.query.order_by(Content.date.desc())
