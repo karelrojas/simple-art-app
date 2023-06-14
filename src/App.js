@@ -7,6 +7,7 @@ import Create from "./pages/Create";
 import Uploads from "./pages/Uploads";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 import { useState, useEffect } from "react";
 
 
@@ -31,6 +32,7 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={!token ? <Login setToken={setToken}/> : <Navigate to="/home" />}/>
+          <Route path="/signup" element={<Signup setToken={setToken}/>} />
           <Route path ="/" element={token ? <Overhead /> : <Navigate to="/login"/>}>
             <Route path="" element={<Navigate to="/home"/>} />
             <Route path="home" element={<Home setToken={setToken}/>}/>

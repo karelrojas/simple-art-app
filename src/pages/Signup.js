@@ -1,26 +1,21 @@
-import { useState } from 'react'
+import Form from './Form.js';
+import './sty/Form.css';
+import temp_logo from '../images/art-icon.png';
 
-export default function Signup(){
+export default function Signup({setToken}){
     return (
-        <div className="Signup-box">
-            <h1>Sign up to Art App</h1>
-            <form className="Signup">
-                <label>
-                    <p>Username:</p>
-                    <input type="username" />
-                </label>
-                <label>
-                    <p>Password:</p>
-                    <input type="password" />
-                </label>
-                <label>
-                    <p>Email:</p>
-                    <input type="email" />
-                </label>
-                <div>
-                    <button type="submit">Submit</button>
+        <div>
+            <div className="main-body">
+                <div className="link-box">
+                    <img className="temp-logo" src={temp_logo}></img>
+                    <h1 className="main-title">Art Application</h1>
                 </div>
-            </form>
+            </div>
+            <div className="Form-box">
+                <h1>Sign up to Art App</h1>
+                <Form setToken={setToken} flag={true}/>
+                <button type="login">Back to Login</button>
+            </div>
         </div>
     )
 }

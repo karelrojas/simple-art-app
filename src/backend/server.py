@@ -91,11 +91,20 @@ def login():
 def signup():
     if request.method == 'POST':
         # Retrieves new login info as json
-        user_info == request.get_json()
-        # Checks if username is taken, will update to include email
+        user_info = request.get_json()
+        uchk = user_info["username"]
+        pchk = user_info["password"]
+        echk = user_info["email"]
+        # Checks if username or email is taken
         db_user = Login.query.filter_by(username=uchk).first()
-        #if user_info["username"] == db_user.username:
-            # return message that says "username taken"
+        db_email = Login.query.filter_by(email=echk).first()
+        if db_user != None and db_email != None:
+            return "false"
+        else :
+            new_user = Login(username=uchk, password=pchk, email=echk)
+            db.session.add(new_user)
+            db.session.commit()
+            # Creates a new account using credentials
         
 
 if __name__ == '__main__':
