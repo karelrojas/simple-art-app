@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Form from './Form.js';
 import temp_logo from '../images/art-icon.png';
 
@@ -13,7 +14,9 @@ export default function Login({setToken}) {
             <div className="Form-box">
                 <h1>Login to Art App</h1>
                 <Form setToken={setToken} flag={false}/>
-                <button type="signup">Signup</button>
+                <Link to="/signup">
+                    <button type="signup">Signup</button>
+                </Link>
             </div>
         </div>
     );

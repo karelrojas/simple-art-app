@@ -31,22 +31,26 @@ export default function Form({setToken, flag}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
+    let token;
 
     const handleSubmit = async e => {
 
         e.preventDefault();
-        const token = await credInput(username, password, email, flag);
+        token = await credInput(username, password, email, flag);
         console.log(token);
-        if(flag && token) {
+        if(flag && token == 0) {
             // New account created, redirect to login page
-        } else {
-            setToken(token);
+        } else if (token == 0) {
+            setToken(parseInt(token));
         }
     }
 
 
     return (
         <form className="Login" onSubmit={handleSubmit}>
+            { token == 2 ? (
+                <div className="form-error">Incorrect username or password</div>
+            ) : null }
             <label>
                 <p>Username:</p>
                 <input type="text" onChange={e => setUsername(e.target.value)}/>

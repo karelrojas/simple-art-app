@@ -78,14 +78,18 @@ def login():
         pchk = login_data["password"]
 
         db_user = Login.query.filter_by(username=uchk).first()
+        # Checks if the user exists
         if db_user == None:
-            return "false"
+            return str(2)
+        # Checks for proper username/password combination
         if uchk != db_user.username:
-            return "false"
-        elif pchk == db_user.password:
-            return "true"
+            return str(2)
+        elif pchk != db_user.password:
+            return str(2)
+        else:
+            return str(0)
     
-    return "false"
+    
 
 @app.route('/signup', methods=['GET','POST'])
 def signup():
@@ -99,11 +103,12 @@ def signup():
         db_user = Login.query.filter_by(username=uchk).first()
         db_email = Login.query.filter_by(email=echk).first()
         if db_user != None and db_email != None:
-            return "false"
+            return str(3)
         else :
             new_user = Login(username=uchk, password=pchk, email=echk)
             db.session.add(new_user)
             db.session.commit()
+            return str(0)
             # Creates a new account using credentials
         
 

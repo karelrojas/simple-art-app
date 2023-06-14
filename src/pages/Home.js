@@ -1,6 +1,6 @@
 export default function Home({setToken}) {
     const handleLogOut = () => {
-        setToken(false);
+        setToken(1);
     }
 
     return (

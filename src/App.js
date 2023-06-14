@@ -12,11 +12,11 @@ import { useState, useEffect } from "react";
 
 
 export default function App() {
-  // Retrieves "token" in localStorage if any
+  // Retrieves "token" in localStorage if there is previous information
   const [token, setToken] = useState(() => {
     const info = localStorage.getItem("token");
     const init = JSON.parse(info);
-    return init || false;
+    return init || 1;
   });
 
   console.log(token);
@@ -31,10 +31,15 @@ export default function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={!token ? <Login setToken={setToken}/> : <Navigate to="/home" />}/>
+          {/* login and root directory will redirect to each other depending on the
+              current value of the token. If the token is any value except 0, it will
+              not be valid and prevent the user from entering
+          */}
+          <Route path="/login" element={token != 0 ? <Login setToken={setToken}/> : <Navigate to="/home" />}/>
           <Route path="/signup" element={<Signup setToken={setToken}/>} />
-          <Route path ="/" element={token ? <Overhead /> : <Navigate to="/login"/>}>
+          <Route path ="/" element={token == 0 ? <Overhead /> : <Navigate to="/login"/>}>
             <Route path="" element={<Navigate to="/home"/>} />
+            {/* home directory takes the token so the user can log out, will likely change to another page */}
             <Route path="home" element={<Home setToken={setToken}/>}/>
             <Route path="uploads" element={<Uploads />}/>
             <Route path="create" element={<Create />}/>
