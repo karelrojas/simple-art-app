@@ -17,7 +17,6 @@ async function credInput(username, password, email, flag){
         .then(data => data.json())
     } else {
         let credentials = {username, password};
-        console.log(JSON.stringify(credentials));
         return fetch('http://localhost:8080/login', {
             method: 'POST',
             headers: {
@@ -53,8 +52,8 @@ export default function Form({setToken, flag}) {
             { token === 2 ? (
                 <div className="form-error">Incorrect username or password</div>
             ) : null }
-            <input type="text" placeholder="Username" onChange={e => setUsername(e.target.value)}/>
-            <br/><input type="password" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
+            <input type="text" placeholder="Username" minlength="6" onChange={e => setUsername(e.target.value)} required/>
+            <br/><input type="password" placeholder="Password" minlength="6" onChange={e => setPassword(e.target.value)} required/>
             { flag ? (
                 <div>
                     <input type="email" placeholder="Email" onChange={e => setEmail(e.target.value)}/>

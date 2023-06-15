@@ -79,6 +79,8 @@ def login():
 
         db_user = Login.query.filter_by(username=uchk).first()
         # Checks if the user exists
+        if db_user == None:
+            return str(2)
         # Checks for proper username/password combination
         if uchk != db_user.username:
             return str(2)
