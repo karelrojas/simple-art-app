@@ -1,5 +1,4 @@
 import './App.css';
-import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Overhead from "./pages/Overhead";
 import Profile from "./pages/Profile";
@@ -35,9 +34,9 @@ export default function App() {
               current value of the token. If the token is any value except 0, it will
               not be valid and prevent the user from entering
           */}
-          <Route path="/login" element={token != 0 ? <Login setToken={setToken}/> : <Navigate to="/home" />}/>
+          <Route path="/login" element={token !== 0 ? <Login setToken={setToken}/> : <Navigate to="/home" />}/>
           <Route path="/signup" element={<Signup setToken={setToken}/>} />
-          <Route path ="/" element={token == 0 ? <Overhead /> : <Navigate to="/login"/>}>
+          <Route path ="/" element={token === 0 ? <Overhead /> : <Navigate to="/login"/>}>
             <Route path="" element={<Navigate to="/home"/>} />
             {/* home directory takes the token so the user can log out, will likely change to another page */}
             <Route path="home" element={<Home setToken={setToken}/>}/>

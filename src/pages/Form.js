@@ -38,9 +38,9 @@ export default function Form({setToken, flag}) {
         e.preventDefault();
         token = await credInput(username, password, email, flag);
         console.log(token);
-        if(flag && token == 0) {
+        if(flag && token === 0) {
             // New account created, redirect to login page
-        } else if (token == 0) {
+        } else if (token === 0) {
             setToken(parseInt(token));
         }
     }
@@ -48,7 +48,7 @@ export default function Form({setToken, flag}) {
 
     return (
         <form className="Login" onSubmit={handleSubmit}>
-            { token == 2 ? (
+            { token === 2 ? (
                 <div className="form-error">Incorrect username or password</div>
             ) : null }
             <label>
