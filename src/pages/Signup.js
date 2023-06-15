@@ -12,7 +12,7 @@ export default function Signup({setToken}){
                 </div>
             </div>
             <div className="Form-box">
-                <h1>Sign up to Art App</h1>
+                <h2>Sign up to Art App</h2>
                 <Form setToken={setToken} flag={true}/>
                 <Link to="/login">
                     <button type="login">Back to Login</button>

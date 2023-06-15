@@ -12,11 +12,9 @@ export default function Login({setToken}) {
                     </div>
             </div>
             <div className="Form-box">
-                <h1>Login to Art App</h1>
+                <h2>Login to Art App</h2>
                 <Form setToken={setToken} flag={false}/>
-                <Link to="/signup">
-                    <button type="signup">Signup</button>
-                </Link>
+                <a className="form-text" href="/signup">Create a new Account</a>
             </div>
         </div>
     );

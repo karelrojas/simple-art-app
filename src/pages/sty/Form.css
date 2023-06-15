@@ -1,12 +1,46 @@
 .Form-box {
+    animation: slide-fade 1000ms;
     margin: auto;
     margin-top: 50px;
-    width: 30%;
+    width: 25%;
+    padding: 5px;
     text-align: center;
     background-color: rgb(252, 217, 79);
     border-radius: 25px;
 }
 
-button {
+input[type=text], input[type=password], input[type=email] {
+    height: 25px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+}
+
+input[type=submit] {
+    height: 40px;
+    width: 150px;
+    background-color: rgb(146, 250, 215);
+    border: 2px solid rgb(88, 239, 191);
+    border-radius: 7px;
     margin: 15px;
+}
+
+.form-text {
+    font-size: small;
+}
+
+input[type=submit]:hover {
+    background-color: rgb(122, 228, 193);
+}
+
+@keyframes slide-fade {
+    from {
+        transform: translateY(25%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0%);
+        opacity: 1;
+    }
 }
