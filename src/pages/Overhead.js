@@ -6,11 +6,12 @@ export default function Overhead() {
         <div className="main-body">
             <div className="link-box">
                 <img className="temp-logo" src={temp_logo}></img>
-                <h1 className="main-title">Art Application</h1>
-                <Link to="/home" className="link">Home</Link>
-                <Link to="/uploads" className="link">Uploads</Link>
-                <Link to="/create" className="link">Create</Link>
-                <Link to="/profile" className="link">Profile</Link>
+                <Link to="/home" title="Home" className="home-link">
+                    <h1 className="main-title">Art Application</h1>
+                </Link>
+                <Link to="/uploads" title="Uploads Page" className="link">Uploads</Link>
+                <Link to="/create" title="Create" className="link">Create</Link>
+                <Link to="/profile" title="Profile" className="link">Profile</Link>
             </div>
             <Outlet />
         </div>

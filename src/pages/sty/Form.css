@@ -2,10 +2,10 @@
     animation: slide-fade 1000ms;
     margin: auto;
     margin-top: 50px;
-    width: 25%;
+    width: 275px;
     padding: 5px;
     text-align: center;
-    background-color: rgb(252, 217, 79);
+    background-color: rgb(255, 233, 106);
     border-radius: 25px;
 }
 

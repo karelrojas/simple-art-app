@@ -7,7 +7,7 @@ function Content({user, desc, date}) {
     const newdate = splitdate[2] + " " + splitdate[1] + " " + splitdate[3];
     return (
         <div className="content">
-            <img src="https://placehold.co/200?text=Placeholder+Image" alt="Placeholder"/>
+            <img className="content-image" src="https://placehold.co/200?text=Placeholder+Image" alt="Placeholder"/>
             <div className="author">{user}</div>
             <div className="content-desc">{desc}</div>
             <div className="upload-date">{newdate}</div>
