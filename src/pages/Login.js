@@ -1,8 +1,7 @@
-import { Link } from "react-router-dom";
 import Form from './Form.js';
 import temp_logo from '../images/art-icon.png';
 
-export default function Login({setToken}) {
+export default function Login({username, setUsername, setToken}) {
     return (
         <div>
             <div className="main-body">
@@ -13,7 +12,7 @@ export default function Login({setToken}) {
             </div>
             <div className="Form-box">
                 <h2>Login to Art App</h2>
-                <Form setToken={setToken} flag={false}/>
+                <Form username={username} setUsername={setUsername} setToken={setToken} flag={false}/>
                 <a className="form-text" href="/signup">Create a new Account</a>
             </div>
         </div>

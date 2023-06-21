@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Form from './Form.js';
 import temp_logo from '../images/art-icon.png';
 
-export default function Signup({setToken}){
+export default function Signup({username, setUsername, setToken}){
     return (
         <div>
             <div className="main-body">
@@ -13,10 +13,8 @@ export default function Signup({setToken}){
             </div>
             <div className="Form-box">
                 <h2>Sign up to Art App</h2>
-                <Form setToken={setToken} flag={true}/>
-                <Link to="/login">
-                    <button type="login">Back to Login</button>
-                </Link>
+                <Form username={username} setUsername={setUsername} setToken={setToken} flag={true}/>
+                <a className="form-text" href="/login">Back to Login</a>
             </div>
         </div>
     )

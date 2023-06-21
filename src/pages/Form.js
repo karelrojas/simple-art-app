@@ -28,8 +28,7 @@ async function credInput(username, password, email, flag){
     }
 }
 
-export default function Form({setToken, flag}) {
-    const [username, setUsername] = useState("");
+export default function Form({username, setUsername, setToken, flag}) {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     let token;

@@ -1,6 +1,7 @@
 from flask import Flask, flash, render_template, request, session, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
+from datetime import datetime
 import mariadb
 import os
 import operator
@@ -17,19 +18,22 @@ CORS(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://" + username + ":" + pswd + "@127.0.0.1:3306/login?charset=utf8mb4"
 db.init_app(app)
 
-class Login(db.Model):
+class User(db.Model):
     uid = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(100))
     email = db.Column(db.String(200), unique=True)
-    uploads = db.relationship('Content', backref='login', lazy=True)
+    created = db.Column(db.Date)
+    upload_count = db.Column(db.Integer)
+    rating_count = db.Column(db.Integer)
+    uploads = db.relationship('Content', backref='user', lazy=True)
 
     def __repr__(self):
         return '<User %r>' % self.username
 
 class Content(db.Model):
     cid = db.Column(db.Integer, primary_key=True)
-    author = db.Column(db.String(50), db.ForeignKey('login.username'), nullable=False)
+    author = db.Column(db.String(50), db.ForeignKey('user.username'), nullable=False)
     description = db.Column(db.String(200))
     image = db.Column(db.String(500))
     date = db.Column(db.DateTime)
@@ -37,6 +41,7 @@ class Content(db.Model):
 
     def __repr__(self):
         return '<Content %r>' % self.author
+
 
 @app.route('/uploads', methods=['GET','POST'])
 def uploads():
@@ -77,7 +82,7 @@ def login():
         uchk = login_data["username"]
         pchk = login_data["password"]
 
-        db_user = Login.query.filter_by(username=uchk).first()
+        db_user = User.query.filter_by(username=uchk).first()
         # Checks if the user exists
         if db_user == None:
             return str(2)
@@ -100,17 +105,26 @@ def signup():
         pchk = user_info["password"]
         echk = user_info["email"]
         # Checks if username or email is taken
-        db_user = Login.query.filter_by(username=uchk).first()
-        db_email = Login.query.filter_by(email=echk).first()
+        db_user = User.query.filter_by(username=uchk).first()
+        db_email = User.query.filter_by(email=echk).first()
         if db_user != None and db_email != None:
             return str(3)
         else :
-            new_user = Login(username=uchk, password=pchk, email=echk)
+            new_user = User(username=uchk, password=pchk, email=echk, created=datetime.now().date(), upload_count=0, rating_count=0)
             db.session.add(new_user)
             db.session.commit()
             return str(0)
             # Creates a new account using credentials
         
+@app.route('/profile', methods=['GET','POST'])
+def profile():
+    if request.method == 'POST':
+        data = request.get_json()
+        username = data["username"]
+        db_user = User.query.filter_by(username=username).first()
+
+        return [db_user.email, db_user.created, db_user.upload_count, db_user.rating_count]
+
 
 if __name__ == '__main__':
     app.run(

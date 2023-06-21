@@ -12,6 +12,7 @@ import { useState, useEffect } from "react";
 
 export default function App() {
   // Retrieves "token" in localStorage if there is previous information
+  const [username, setUsername] = useState("");
   const [token, setToken] = useState(() => {
     const info = localStorage.getItem("token");
     const init = JSON.parse(info);
@@ -34,15 +35,16 @@ export default function App() {
               current value of the token. If the token is any value except 0, it will
               not be valid and prevent the user from entering
           */}
-          <Route path="/login" element={token !== 0 ? <Login setToken={setToken}/> : <Navigate to="/home" />}/>
-          <Route path="/signup" element={<Signup setToken={setToken}/>} />
+          <Route path="/login" element={token !== 0 ? <Login username={username} setUsername={setUsername} setToken={setToken}/> : <Navigate to="/home" />}/>
+          <Route path="/signup" element={<Signup username={username} setUsername={setUsername} setToken={setToken}/>} />
           <Route path ="/" element={token === 0 ? <Overhead /> : <Navigate to="/login"/>}>
             <Route path="" element={<Navigate to="/home"/>} />
             {/* home directory takes the token so the user can log out, will likely change to another page */}
             <Route path="home" element={<Home setToken={setToken}/>}/>
             <Route path="uploads" element={<Uploads />}/>
             <Route path="create" element={<Create />}/>
-            <Route path="profile" element={<Profile />}/>
+            {/* profile should have username and user statistics displayed */}
+            <Route path="profile" element={<Profile username={username}/>}/>
           </Route>
         </Routes>
       </BrowserRouter>
