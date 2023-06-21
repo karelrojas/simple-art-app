@@ -8,7 +8,7 @@ function Content({user, desc, date}) {
     return (
         <div className="content">
             <img className="content-image" src="https://placehold.co/200?text=Placeholder+Image" alt="Placeholder"/>
-            <div className="author">{user}</div>
+            <a className="author" href={`/profile/${user}`}>{user}</a>
             <div className="content-desc">{desc}</div>
             <div className="upload-date">{newdate}</div>
         </div>
