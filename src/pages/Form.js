@@ -31,6 +31,7 @@ async function credInput(username, password, email, flag){
 export default function Form({username, setUsername, setToken, flag}) {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
+    const [err, setErr] = useState(false);
     let token;
 
     const handleSubmit = async e => {
@@ -42,16 +43,18 @@ export default function Form({username, setUsername, setToken, flag}) {
             // New account created, redirect to login page
         } else if (token === 0) {
             setToken(parseInt(token));
+        } else if (token === 2) {
+            setErr(true);
         }
     }
 
 
     return (
         <form className="Login" onSubmit={handleSubmit}>
-            { token === 2 ? (
+            { err ? (
                 <div className="form-error">Incorrect username or password</div>
             ) : null }
-            <input type="text" placeholder="Username" minlength="6" onChange={e => setUsername(e.target.value)} required/>
+            <input type="text" placeholder="Username" minlength="3" onChange={e => setUsername(e.target.value)} required/>
             <br/><input type="password" placeholder="Password" minlength="6" onChange={e => setPassword(e.target.value)} required/>
             { flag ? (
                 <div>

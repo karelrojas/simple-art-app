@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 // Displays profile details, stats
-export default function Profile({username}) {
+export default function Profile({username, setToken}) {
     const [stats, setStats] = useState([]);
     useEffect(() => {
         fetch('http://localhost:8080/profile', {
@@ -18,6 +18,10 @@ export default function Profile({username}) {
         })
     }, []);
 
+    const handleLogOut = () => {
+        setToken(1);
+    }
+
     return (
         <div className="profile">
             <h2>{username}</h2>
@@ -27,6 +31,7 @@ export default function Profile({username}) {
                 <div className="upload_count">Total Uploads: {stats[2]}</div>
                 <div className="rating_count">Rating: {stats[3]}</div>
             </div>
+            <button onClick={handleLogOut}>Log Out</button>
         </div>
     );
 }

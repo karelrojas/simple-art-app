@@ -40,11 +40,11 @@ export default function App() {
           <Route path ="/" element={token === 0 ? <Overhead /> : <Navigate to="/login"/>}>
             <Route path="" element={<Navigate to="/home"/>} />
             {/* home directory takes the token so the user can log out, will likely change to another page */}
-            <Route path="home" element={<Home setToken={setToken}/>}/>
+            <Route path="home" element={<Home />}/>
             <Route path="uploads" element={<Uploads />}/>
             <Route path="create" element={<Create />}/>
             {/* profile should have username and user statistics displayed */}
-            <Route path="profile" element={<Profile username={username}/>}/>
+            <Route path="profile" element={<Profile username={username} setToken={setToken}/>}/>
           </Route>
         </Routes>
       </BrowserRouter>
