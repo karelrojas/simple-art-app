@@ -52,7 +52,7 @@ export default function Uploads() {
             </div>
             <div className="upload-body">
                 <label for="sort">Sort by: </label>
-                <select name="sort" onChange={e => handleChange(e.target.value)}>
+                <select className="upload-sort" name="sort" onChange={e => handleChange(e.target.value)}>
                     <option value="date-new">Date (newest)</option>
                     <option value="date-old">Date (oldest)</option>
                     <option value="author">Author</option>

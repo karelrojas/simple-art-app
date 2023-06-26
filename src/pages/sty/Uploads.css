@@ -13,6 +13,12 @@
     font-weight: bold;
 }
 
+.upload-sort {
+    height: 36px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
 /* Testing out changing the column size with respec to window size */
 @media (max-width: 960px) {
     .upload-content {
