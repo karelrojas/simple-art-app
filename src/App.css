@@ -1,6 +1,12 @@
+html, body {
+  height: 100%;
+  background-color: rgb(245, 241, 228);
+}
+
 .App {
   text-align: center;
 }
+
 
 .main-title {
   padding: 10px;

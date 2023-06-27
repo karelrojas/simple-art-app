@@ -12,10 +12,10 @@ import { useState, useEffect } from "react";
 
 export default function App() {
   // Retrieves "token" in localStorage if there is previous information
+  // username needs to be saved in localstorage and return needs to be fixed
   const [username, setUsername] = useState("");
   const [token, setToken] = useState(() => {
-    const info = localStorage.getItem("token");
-    const init = JSON.parse(info);
+    const init = JSON.parse(localStorage.getItem("token"));
     return init || 1;
   });
 
