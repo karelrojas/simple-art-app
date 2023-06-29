@@ -1,46 +1,67 @@
 .drawing-page {
-    margin: auto;
     display: flex;
+    margin: auto;
+    width: 475px;
 }
 
 .drawing-canvas {
     border: 1px solid black;
-    margin: auto;
-    display: block;
-    width: 400px;
 }
 
-.colors {
-    margin-right: 0px;
-    width: 200px;
+.brush-options {
+    margin: 5px;   
 }
 
-.color-black {
+.brush-label {
+    width: 70px;
+}
+
+.brush {
+    height: 15px;
+    width: 60px;
+    margin: 7px;
+}
+
+.color {
+    width: 25px;
+    height: 25px;
+    margin: 7px;
+}
+
+.black {
     background-color: black;
-    width: 25px;
-    height: 25px;
-    margin: 5px;
 }
 
-.color-blue {
-    background-color: #0000FF;
-    width: 25px;
-    height: 25px;
-    margin: 5px;
-}
-
-.color-green {
-    background-color: #00FF00;
-    width: 25px;
-    height: 25px;
-    margin: 5px;
-}
-
-.color-red {
+.red {
     background-color: #FF0000;
-    width: 25px;
-    height: 25px;
-    margin: 5px;
+}
+
+.orange {
+    background-color: #FFA500;
+}
+
+.yellow {
+    background-color: #FFFF00;
+}
+
+.green {
+    background-color: #00FF00;
+}
+
+.aquamarine {
+    background-color: #7FFFD4;
+}
+
+.blue {
+    background-color: #0000FF;
+}
+
+.indigo {
+    background-color: #4B0082;
+}
+
+.purple {
+    background-color: #A020F0;
 }
 
 canvas {
