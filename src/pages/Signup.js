@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import Form from './Form.js';
 import temp_logo from '../images/art-icon.png';
 
@@ -7,7 +6,7 @@ export default function Signup({username, setUsername, setToken}){
         <div>
             <div className="main-body">
                 <div className="link-box">
-                    <img className="temp-logo" src={temp_logo}></img>
+                    <img className="temp-logo" alt="logo" src={temp_logo}></img>
                     <h1 className="main-title">Art Application</h1>
                 </div>
             </div>

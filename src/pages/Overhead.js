@@ -5,7 +5,7 @@ export default function Overhead({username}) {
     return (
         <div className="main-body">
             <div className="link-box">
-                <img className="temp-logo" src={temp_logo}></img>
+                <img className="temp-logo" alt="logo" src={temp_logo}></img>
                 <Link to="/home" title="Home" className="home-link">
                     <h1 className="main-title">Art Application</h1>
                 </Link>

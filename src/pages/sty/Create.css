@@ -8,6 +8,10 @@
     border: 1px solid black;
 }
 
+.upload-settings {
+    position: relative;
+}
+
 .brush-options {
     margin: 5px;   
 }

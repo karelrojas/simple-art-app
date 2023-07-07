@@ -110,7 +110,12 @@ def signup():
         if db_user != None and db_email != None:
             return str(3)
         else :
-            new_user = User(username=uchk, password=pchk, email=echk, created=datetime.now().date(), upload_count=0, rating_count=0)
+            new_user = User(username=uchk, 
+                password=pchk, 
+                email=echk, 
+                created=datetime.now().date(), 
+                upload_count=0, 
+                rating_count=0)
             db.session.add(new_user)
             db.session.commit()
             return str(0)
@@ -124,6 +129,18 @@ def profile():
         db_user = User.query.filter_by(username=username).first()
 
         return [db_user.email, db_user.created, db_user.upload_count, db_user.rating_count]
+
+@app.route('/submission', methods=['GET','POST'])
+def submission():
+    if request.method == 'POST':
+        data = request.get_json()
+        new_content = Content(author=data["author"], 
+            description=data["description"], 
+            image=data["image"], 
+            date=data["date"], 
+            rating=data["rating"])
+        db.session.add(new_content)
+        db.session.commit()
 
 
 if __name__ == '__main__':

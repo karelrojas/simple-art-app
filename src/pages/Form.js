@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import './sty/Form.css';
-import { json } from 'react-router-dom';
 
 async function credInput(username, password, email, flag){
     console.log(JSON.stringify({username, password, email}));
