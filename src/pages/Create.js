@@ -4,24 +4,15 @@ import CanvasDraw from 'react-canvas-draw';
 import './sty/Create.css';
 
 
-export default function Create() {
+export default function Create({username}) {
     const canvas = useRef();
     const [flag, setFlag] = useState(1);
     const [color, setColor] = useState("#000000");
     const [brushsize, setBrushsize] = useState(10);
 
     // b64toBlob taken from stack overflow answer, will link in README
-    let burl;
 
     function uploadDrawing(author, image, desc) {
-        /*console.log([image, author, desc]);
-        const formData = new FormData();
-        formData.append("image", image, "image.jpg");
-        formData.append("author", author);
-        formData.append("desc", desc);
-        for (const value of formData.values()) {
-            console.log(value);
-          }*/
         fetch('http://localhost:8080/submission', {
             method: 'POST',
             headers: {
@@ -32,22 +23,10 @@ export default function Create() {
         .then(data => data.json());
     }
     
-    function b64toBlob(base64, type = 'application/octet-stream'){
-        fetch(`data:${type};base64,${base64}`)
-            .then(res => res.blob()
-            .then((myBlob) => { 
-                console.log(myBlob)
-                setFlag(uploadDrawing("Collia", myBlob, "This is a test description"));
-            }));
-    }
 
 
-    const handleUpload = (b64data) => {
-        uploadDrawing("Collia", b64data, "testing with b64")
-        //const b64 = b64data.split(",")[1];
-        //console.log(b64);
-        //b64toBlob(b64, 'image/png')
-        //uploadDrawing("Collia", blob, "test description");
+    const handleUpload = (image, desc) => {
+        uploadDrawing(username, image, desc)
     }
 
     return (
@@ -96,9 +75,10 @@ export default function Create() {
             </div>
             <div className="upload-settings">
                 <label>Description</label>
-                <textarea className="upload-description" />
+                <textarea id="upload-desc" className="upload-description" />
                 <button onClick={() => {
-                    handleUpload(canvas.current.getDataURL());
+                    const desc = document.getElementById("upload-desc");
+                    handleUpload(canvas.current.getDataURL(), desc.value);
                 }}>
                     Upload
                 </button>

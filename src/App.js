@@ -42,7 +42,7 @@ export default function App() {
             {/* home directory takes the token so the user can log out, will likely change to another page */}
             <Route path="home" element={<Home />}/>
             <Route path="uploads" element={<Uploads />}/>
-            <Route path="create" element={<Create />}/>
+            <Route path="create" element={<Create username={username}/>}/>
             {/* profile should have username and user statistics displayed */}
             <Route path={`profile/${username}`} element={<Profile username={username} setToken={setToken}/>}/>
           </Route>
