@@ -35,7 +35,7 @@ class Content(db.Model):
     cid = db.Column(db.Integer, primary_key=True)
     author = db.Column(db.String(50), db.ForeignKey('user.username'), nullable=False)
     description = db.Column(db.String(200))
-    image = db.Column(db.String(500))
+    image = db.Column(db.BLOB)
     date = db.Column(db.DateTime)
     rating = db.Column(db.Integer)
 
@@ -70,7 +70,7 @@ def uploads():
 
     user_list = []
     for user in db_datalist:
-        user_list.append([user.author, user.description, user.date, user.cid])
+        user_list.append([user.author, user.image, user.description, user.date, user.cid])
 
     return user_list
 
@@ -133,14 +133,25 @@ def profile():
 @app.route('/submission', methods=['GET','POST'])
 def submission():
     if request.method == 'POST':
-        data = request.get_json()
-        new_content = Content(author=data["author"], 
-            description=data["description"], 
-            image=data["image"], 
-            date=data["date"], 
-            rating=data["rating"])
+        #image = request.files['image']
+        #print(len(image))
+        #print("before file")
+        #print(image)
+        data = request.json
+        image = data["image"]
+        image_enc = image.encode('ascii', 'utf-8')
+        for info in data:
+            print(info)
+        new_content = Content(
+            author=data["author"], 
+            description=data["desc"], 
+            image=image_enc, 
+            date=datetime.now().date(), 
+            rating=0)
         db.session.add(new_content)
         db.session.commit()
+
+    return str(0)
 
 
 if __name__ == '__main__':

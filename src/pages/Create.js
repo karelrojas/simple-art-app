@@ -6,33 +6,55 @@ import './sty/Create.css';
 
 export default function Create() {
     const canvas = useRef();
-    const [tempblob, setTempblob] = useState();
+    const [flag, setFlag] = useState(1);
     const [color, setColor] = useState("#000000");
     const [brushsize, setBrushsize] = useState(10);
-    {/* b64toBlob taken from stack overflow answer, will link in README */}
+
+    // b64toBlob taken from stack overflow answer, will link in README
     let burl;
+
+    function uploadDrawing(author, image, desc) {
+        /*console.log([image, author, desc]);
+        const formData = new FormData();
+        formData.append("image", image, "image.jpg");
+        formData.append("author", author);
+        formData.append("desc", desc);
+        for (const value of formData.values()) {
+            console.log(value);
+          }*/
+        fetch('http://localhost:8080/submission', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({author, image, desc})
+        })
+        .then(data => data.json());
+    }
     
-    const b64toBlob = (base64, type = 'application/octet-stream') => 
+    function b64toBlob(base64, type = 'application/octet-stream'){
         fetch(`data:${type};base64,${base64}`)
             .then(res => res.blob()
             .then((myBlob) => { 
-                setTempblob(myBlob);
-                burl = URL.createObjectURL(myBlob);
+                console.log(myBlob)
+                setFlag(uploadDrawing("Collia", myBlob, "This is a test description"));
             }));
+    }
 
-    //const blob = b64toBlob(data, 'image/png');
 
     const handleUpload = (b64data) => {
-        const b64 = b64data.split(",")[1];
-        console.log(b64);
-        const blob = b64toBlob(b64, 'image/png')
+        uploadDrawing("Collia", b64data, "testing with b64")
+        //const b64 = b64data.split(",")[1];
+        //console.log(b64);
+        //b64toBlob(b64, 'image/png')
+        //uploadDrawing("Collia", blob, "test description");
     }
 
     return (
         <div>
             <h1>Creation Page</h1>
             <h3>This is the page where users can draw images.</h3>
-            <img src="blob:http://localhost:3000/9982d4a2-bfb4-4585-bebc-0a258843cbd0"></img>
+            <img src=""></img>
             <div className="drawing-page">
                 <div className="colors">
                     <div className="color black" onClick={() => {setColor("#000000");}}/>
@@ -77,7 +99,6 @@ export default function Create() {
                 <textarea className="upload-description" />
                 <button onClick={() => {
                     handleUpload(canvas.current.getDataURL());
-                    console.log(tempblob);
                 }}>
                     Upload
                 </button>

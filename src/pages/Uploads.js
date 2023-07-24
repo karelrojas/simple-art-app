@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import './sty/Uploads.css'
 
 // Will update to take in props for img, author, and desc
-function Content({user, desc, date}) {
+function Content({user, image, desc, date}) {
     const splitdate = date.split(" ");
     const newdate = splitdate[2] + " " + splitdate[1] + " " + splitdate[3];
     return (
         <div className="content">
-            <img className="content-image" src="https://placehold.co/200?text=Placeholder+Image" alt="Placeholder"/>
+            <img className="content-image" src={image} alt="Placeholder"/>
             <br/><a className="author" href={`/profile/${user}`}>{user}</a>
             <div className="content-desc">{desc}</div>
             <div className="upload-date">{newdate}</div>
@@ -63,7 +63,7 @@ export default function Uploads() {
                 </input>
                 <div className="upload-content">
                     {users.map((user) => (
-                        <Content user={user[0]} desc={user[1]} date={user[2]} key={user[3]}/>
+                        <Content user={user[0]} image={user[1]} desc={user[2]} date={user[3]} key={user[4]}/>
                     ))}
                       
 
