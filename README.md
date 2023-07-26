@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+# Simple Art App
+### Created by Karel Rojas Requena
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Website
+This is a basic website for users to draw and upload their own pictures, where they can be shared and viewed by other users. It features a login and signup process so users can
+keep track of their posts and how well received they are by others.
 
-In the project directory, you can run:
+## Development Process
+This website was programmed using [React](https://react.dev/) for the front end, Python and [Flask](https://flask.palletsprojects.com/en/2.3.x/) for the back end, 
+and [MariaDB](https://mariadb.org/) as the database. [React-canvas-draw](https://github.com/embiem/react-canvas-draw) is the component used to allow users to draw.
 
-### `npm start`
+Initially, the website would simply be a place to draw and anonymously upload drawings for others to view. Since users needed to see other user's drawings, a database was required to save that information. Shortly after, a login system was implemented which eliminated anonymity and changed the design of the website. Now that the website was oriented towards user creation and sharing, inspiration was taken from a handful of social media websites. It was then decided that users would be able to keep track of their posts and see how well they are doing.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Development Issues
+### Image Data
+One of the biggest issues was trying to compress the canvas image so it wouldn't take up too much space when uploaded to the database. The react-canvas-draw component has a function
+that saves the canvas image as a **data url**, which grows in size the more complex the drawing becomes. Using some of the functions provided in the responses to [this StackOverflow post](https://stackoverflow.com/questions/16245767/creating-a-blob-from-a-base64-string-in-javascript), I attempted to convert the data url into a **Blob** object so the image wouldn't need to use
+as much space. Displaying the images would also be simple, as I would have been able to convert the Blobs into Blob links that can be viewed when the client requests the image.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+I was able to get as far as creating the Blob object, however since I am using Flask to act as the server, the Blob object changes into a FileStorage object, which to
+my knowledge is something specific to Flask. Since I have been working on this project for longer than expected, I ultimately decided to simple send the image data url itself directly to the database.
+It is clearly not an efficent way to store images or image data, but I did not want to stay on this issue forever.
 
-### `npm test`
+### Login Security
+Currently, the login system is not secure at all. Passwords are not encrypted or hashed and are simply stored as plaintext. There is also no proper authentication token once login 
+is verified, and the current system uses numerical flags to determine verification. I would like to implement a proper and secure method of login and verification in the future, but 
+the main focus of this project was to design an art app, so a simpler login system is needed for now.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
