@@ -19,6 +19,19 @@
     border-radius: 5px;
 }
 
+.arrow {
+    margin: 5px;
+}
+
+.up {
+    rotate: 270deg;
+    color: greenyellow;
+}
+
+.down {
+    rotate: 90deg;
+}
+
 /* Testing out changing the column size with respec to window size */
 @media (max-width: 960px) {
     .upload-content {

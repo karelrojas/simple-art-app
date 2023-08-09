@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import './sty/Uploads.css'
+import arrow from '../images/arrow-icon.png';
 
-// Will update to take in props for img, author, and desc
+// Displays information of content in proper order
 function Content({user, image, desc, date}) {
     const splitdate = date.split(" ");
     const newdate = splitdate[2] + " " + splitdate[1] + " " + splitdate[3];
@@ -11,6 +12,8 @@ function Content({user, image, desc, date}) {
             <br/><a className="author" href={`/profile/${user}`}>{user}</a>
             <div className="content-desc">{desc}</div>
             <div className="upload-date">{newdate}</div>
+            <img className="arrow up" alt="upvote" src={arrow}/>
+            <img className="arrow down" alt="downvote" src={arrow}/>
         </div>
     );
 };

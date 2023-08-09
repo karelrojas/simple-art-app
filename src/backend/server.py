@@ -133,15 +133,12 @@ def profile():
 @app.route('/submission', methods=['GET','POST'])
 def submission():
     if request.method == 'POST':
-        #image = request.files['image']
-        #print(len(image))
-        #print("before file")
-        #print(image)
         data = request.json
         image = data["image"]
         image_enc = image.encode('ascii', 'utf-8')
         for info in data:
             print(info)
+        # Create new entry in database
         new_content = Content(
             author=data["author"], 
             description=data["desc"], 
@@ -149,6 +146,10 @@ def submission():
             date=datetime.now().date(), 
             rating=0)
         db.session.add(new_content)
+        # Update upload count
+        db_user = User.query.filter_by(username=data["author"]).first()
+        db_user.upload_count += 1
+
         db.session.commit()
 
     return str(0)
