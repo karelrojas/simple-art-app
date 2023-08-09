@@ -7,6 +7,7 @@ import Uploads from "./pages/Uploads";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Redirect from './pages/Redirect';
 import { useState, useEffect } from "react";
 
 
@@ -37,6 +38,7 @@ export default function App() {
           */}
           <Route path="/login" element={token !== 0 ? <Login username={username} setUsername={setUsername} setToken={setToken}/> : <Navigate to="/home" />}/>
           <Route path="/signup" element={<Signup username={username} setUsername={setUsername} setToken={setToken}/>} />
+          <Route path="/redirect" element={<Redirect />}/>
           <Route path ="/" element={token === 0 ? <Overhead username={username}/> : <Navigate to="/login"/>}>
             <Route path="" element={<Navigate to="/home"/>} />
             {/* home directory takes the token so the user can log out, will likely change to another page */}

@@ -44,6 +44,16 @@ html, body {
   padding: 20px;
 }
 
+.redirect-msg {
+  height: 25px;
+  width: 400px;
+  margin: auto;
+  margin-top: 50px;
+  text-align: center;
+  background-color: rgb(146, 250, 215);
+  border-radius: 5px;
+}
+
 a:link { 
   text-decoration: none; 
   color:#282c34;

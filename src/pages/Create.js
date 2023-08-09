@@ -10,8 +10,6 @@ export default function Create({username}) {
     const [color, setColor] = useState("#000000");
     const [brushsize, setBrushsize] = useState(10);
 
-    // b64toBlob taken from stack overflow answer, will link in README
-
     function uploadDrawing(author, image, desc) {
         fetch('http://localhost:8080/submission', {
             method: 'POST',

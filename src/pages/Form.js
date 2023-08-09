@@ -40,6 +40,7 @@ export default function Form({username, setUsername, setToken, flag}) {
         console.log(token);
         if(flag && token === 0) {
             // New account created, redirect to login page
+            window.location.replace("/redirect");
         } else if (token === 0) {
             setToken(parseInt(token));
         } else if (token === 2) {
