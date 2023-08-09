@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import './sty/Profile.css';
 
 // Displays profile details, stats
 export default function Profile({username, setToken}) {
@@ -31,7 +32,7 @@ export default function Profile({username, setToken}) {
                 <div className="upload_count">Total Uploads: {stats[2]}</div>
                 <div className="rating_count">Rating: {stats[3]}</div>
             </div>
-            <button onClick={handleLogOut}>Log Out</button>
+            <button className="logout" onClick={handleLogOut}>Log Out</button>
         </div>
     );
 }

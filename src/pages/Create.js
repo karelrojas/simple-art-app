@@ -28,11 +28,10 @@ export default function Create({username}) {
     }
 
     return (
-        <div>
+        <div className="drawing-page">
             <h1>Creation Page</h1>
             <h3>This is the page where users can draw images.</h3>
-            <img src=""></img>
-            <div className="drawing-page">
+            <div className="main-canvas">
                 <div className="colors">
                     <div className="color black" onClick={() => {setColor("#000000");}}/>
                     <div className="color red" onClick={() => {setColor("#FF0000");}}/>
@@ -60,21 +59,21 @@ export default function Create({username}) {
                 </div>
             </div>
             <div className="tools">
-                <button onClick={() => {
+                <button className="tb undo"onClick={() => {
                     canvas.current.undo()
                 }}>
                     Undo
                 </button>
-                <button onClick={() => {
+                <button className="tb clear" onClick={() => {
                     canvas.current.clear()
                 }}>
                     Clear
                 </button><br/><br/>
             </div>
             <div className="upload-settings">
-                <label>Description</label>
-                <textarea id="upload-desc" className="upload-description" />
-                <button onClick={() => {
+                <label className="ups label">Description</label>
+                <textarea id="upload-desc" className="ups description" />
+                <button className= "ups upload" onClick={() => {
                     const desc = document.getElementById("upload-desc");
                     handleUpload(canvas.current.getDataURL(), desc.value);
                 }}>

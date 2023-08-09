@@ -1,18 +1,31 @@
+h3 {
+    margin-bottom: 0px;
+}
+
 .drawing-page {
+    padding-bottom: 15px;
+}
+
+.main-canvas {
     display: flex;
     margin: auto;
-    width: 475px;
+    padding: 10px;
+    width: 540px;
 }
 
 .drawing-canvas {
-    border: 1px solid black;
-}
-
-.upload-settings {
-    position: relative;
+    background-color: rgb(255, 233, 106);
+    border-radius: 7px;
+    padding: 15px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .brush-options {
+    background-color: rgb(255, 233, 106);
+    border-radius: 7px;
+    height: 75px;
+    padding: 5px;
     margin: 5px;   
 }
 
@@ -26,10 +39,47 @@
     margin: 7px;
 }
 
+.tools {
+    background-color: rgb(255, 233, 106);
+    border-radius: 7px;
+    width: 115px;
+    height: 30px;
+    padding: 5px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.tb {
+    margin: 4px;
+}
+
+.upload-settings {
+    background-color: rgb(255, 233, 106);
+    border-radius: 7px;
+    width: 200px;
+    height: 100px;
+    margin: auto;
+    padding: 10px;
+    position: relative;
+}
+
+.ups {
+    margin: 5px;
+}
+
+.colors {
+    background-color: rgb(255, 233, 106);
+    border-radius: 7px;
+    height: 310px;
+    padding: 5px;
+    margin: 5px;
+}
+
 .color {
     width: 25px;
     height: 25px;
     margin: 7px;
+    border: 1px solid black;
 }
 
 .black {
@@ -69,5 +119,5 @@
 }
 
 canvas {
-    border: 1px solid darkgray;
+    border: 1px solid black;
 }
